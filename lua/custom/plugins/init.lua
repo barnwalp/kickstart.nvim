@@ -5,13 +5,20 @@
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>j', '<C-W>j')
+vim.keymap.set('n', '<leader>k', '<C-W>k')
+vim.keymap.set('n', '<leader>h', '<C-W>h')
+vim.keymap.set('n', '<leader>l', '<C-W>l')
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 -- NeoTree Toggle config
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
+
+-- overwrite the keymap declared in init.lu
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 return {
   {
@@ -47,5 +54,10 @@ return {
         },
       }
     end,
+  },
+  {
+    'lukas-reineke/headlines.nvim',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = true, -- or `opts = {}`
   },
 }
