@@ -14,11 +14,15 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
+
 -- NeoTree Toggle config
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
 
 -- overwrite the keymap declared in init.lu
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- change the default colorscheme
+vim.cmd.colorscheme 'catppuccin-mocha'
 
 return {
   {
@@ -60,4 +64,10 @@ return {
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = true, -- or `opts = {}`
   },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+  },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 }
