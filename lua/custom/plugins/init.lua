@@ -5,15 +5,16 @@
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
-vim.keymap.set('n', '<leader>j', '<C-W>j')
-vim.keymap.set('n', '<leader>k', '<C-W>k')
-vim.keymap.set('n', '<leader>h', '<C-W>h')
-vim.keymap.set('n', '<leader>l', '<C-W>l')
+-- vim.keymap.set('n', '<leader>j', '<C-W>j')
+-- vim.keymap.set('n', '<leader>k', '<C-W>k')
+-- vim.keymap.set('n', '<leader>h', '<C-W>h')
+-- vim.keymap.set('n', '<leader>l', '<C-W>l')
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
+vim.opt.swapfile = false
 
 -- NeoTree Toggle config
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
@@ -76,6 +77,32 @@ require('which-key').register({
 })
 
 return {
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
+  { 'nvim-treesitter/nvim-treesitter-context' },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
   {
     'nvim-tree/nvim-tree.lua',
     version = '*',
