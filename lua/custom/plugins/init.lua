@@ -22,12 +22,19 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diag
 
 return {
   {
+    'mattn/emmet-vim',
+  },
+  {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     ft = { 'markdown' },
     build = function()
       vim.fn['mkdp#util#install']()
     end,
+  },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
   },
   { 'nvim-treesitter/nvim-treesitter-context' },
   {
