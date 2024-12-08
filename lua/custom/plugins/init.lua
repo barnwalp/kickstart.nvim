@@ -13,6 +13,11 @@ vim.opt.expandtab = true
 vim.opt.swapfile = false
 vim.cmd 'highlight Normal ctermbg=none guibg=none'
 vim.cmd 'highlight NonText ctermbg=none guibg=none'
+-- vim.cmd [[
+--   hi Normal guibg=NONE ctermbg=NONE
+--   hi VertSplit guibg=NONE ctermbg=NONE
+--   hi StatusLine guibg=NONE ctermbg=NONE
+-- ]]
 
 -- NeoTree Toggle config
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
@@ -20,7 +25,12 @@ vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
 -- overwrite the keymap declared in init.lu
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+vim.g.user_emmet_mode = 'a'
+
 return {
+  {
+    'tpope/vim-fugitive',
+  },
   {
     'mattn/emmet-vim',
   },
