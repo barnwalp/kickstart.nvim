@@ -28,6 +28,11 @@ vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diag
 vim.g.user_emmet_mode = 'a'
 
 return {
+  { 'edluffy/hologram.nvim' },
+  {
+    'dccsillag/magma-nvim',
+    build = ':UpdateRemotePlugins',
+  },
   {
     'tpope/vim-fugitive',
   },
