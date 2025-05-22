@@ -210,7 +210,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    vim.hl.on_yank()
+    vim.highlight.on_yank()
   end,
 })
 
@@ -839,10 +839,10 @@ require('lazy').setup({
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
 
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
-          ['<CR>'] = cmp.mapping.confirm { select = true },
+      -- Accept ([y]es) the completion.
+      --  This will auto-import if your LSP supports it.
+      --  This will expand snippets if the LSP sent a snippet.
+      -- ['<CR>'] = cmp.mapping.confirm { select = true },
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
