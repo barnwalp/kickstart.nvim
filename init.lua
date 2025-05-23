@@ -716,8 +716,8 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-        automatic_installation = false,
+        ensure_installed = { 'lua_ls', 'pyright' }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
