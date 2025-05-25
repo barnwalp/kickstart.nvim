@@ -29,12 +29,60 @@ vim.g.user_emmet_mode = 'a'
 
 return {
   {
-    'benlubas/molten-nvim',
-    version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
-    build = ':UpdateRemotePlugins',
-    init = function()
-      -- this is an example, not a default. Please see the readme for more configuration options
-      vim.g.molten_output_win_max_height = 12
+    'Vigemus/iron.nvim',
+    config = function()
+      local iron = require 'iron.core'
+      local view = require 'iron.view'
+      local common = require 'iron.fts.common'
+
+      iron.setup {
+        config = {
+          scratch_repl = true,
+          repl_definition = {
+            sh = { command = { 'zsh' } },
+            python = {
+              command = { '/Users/pankaj/anaconda3/bin/ipython' },
+              format = common.bracketed_paste_python,
+              block_dividers = { '# %%', '#%%' },
+            },
+          },
+          repl_filetype = function(_, ft)
+            return ft
+          end,
+          -- multiple repl layouts
+          repl_open_cmd = {
+            view.center('75%', '85%'), -- cmd_1
+            view.right '50%', -- cmd_2
+          },
+        },
+        keymaps = {
+          toggle_repl_with_cmd_1 = '<space>tf',
+          toggle_repl_with_cmd_2 = '<space>tr',
+          restart_repl = '<space>rr',
+          send_motion = '<space>sc',
+          visual_send = '<space>sv',
+          send_file = '<space>sfl',
+          send_line = '<space>sl',
+          send_paragraph = '<space>sp',
+          send_until_cursor = '<space>su',
+          send_mark = '<space>sm',
+          send_code_block = '<space>cb',
+          send_code_block_and_move = '<space>cn',
+          mark_motion = '<space>mc',
+          mark_visual = '<space>mc',
+          remove_mark = '<space>md',
+          cr = '<space>s<cr>',
+          interrupt = '<space>s<space>',
+          exit = '<space>sq',
+          clear = '<space>cl',
+        },
+        highlight = { italic = true },
+        ignore_blank_lines = true,
+      }
+
+      -- extra Iron commands
+      vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
+      vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
     end,
   },
   { 'edluffy/hologram.nvim' },
