@@ -22,110 +22,12 @@ vim.cmd 'highlight NonText ctermbg=none guibg=none'
 -- NeoTree Toggle config
 vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>')
 
--- overwrite the keymap declared in init.lu
+-- overwrite the keymap declared in init.lua
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.g.user_emmet_mode = 'a'
 
 return {
-  {
-    'Vigemus/iron.nvim',
-    config = function()
-      local iron = require 'iron.core'
-      local view = require 'iron.view'
-      local common = require 'iron.fts.common'
-
-      iron.setup {
-        config = {
-          scratch_repl = true,
-          repl_definition = {
-            sh = { command = { 'zsh' } },
-            python = {
-              command = { '/Users/pankaj/anaconda3/bin/ipython' },
-              format = common.bracketed_paste_python,
-              block_dividers = { '# %%', '#%%' },
-            },
-          },
-          repl_filetype = function(_, ft)
-            return ft
-          end,
-          -- multiple repl layouts
-          repl_open_cmd = {
-            view.center('75%', '85%'), -- cmd_1
-            view.right '50%', -- cmd_2
-          },
-        },
-        keymaps = {
-          toggle_repl_with_cmd_1 = '<space>tf',
-          toggle_repl_with_cmd_2 = '<space>tr',
-          restart_repl = '<space>rr',
-          send_motion = '<space>sc',
-          visual_send = '<space>sv',
-          send_file = '<space>sfl',
-          send_line = '<space>sl',
-          send_paragraph = '<space>sp',
-          send_until_cursor = '<space>su',
-          send_mark = '<space>sm',
-          send_code_block = '<space>cb',
-          send_code_block_and_move = '<space>cn',
-          mark_motion = '<space>mc',
-          mark_visual = '<space>mc',
-          remove_mark = '<space>md',
-          cr = '<space>s<cr>',
-          interrupt = '<space>s<space>',
-          exit = '<space>sq',
-          clear = '<space>cl',
-        },
-        highlight = { italic = true },
-        ignore_blank_lines = true,
-      }
-
-      -- extra Iron commands
-      vim.keymap.set('n', '<space>rf', '<cmd>IronFocus<cr>')
-      vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
-    end,
-  },
-  { 'edluffy/hologram.nvim' },
-  {
-    'dccsillag/magma-nvim',
-    build = ':UpdateRemotePlugins',
-  },
-  {
-    'tpope/vim-fugitive',
-  },
-  {
-    'mattn/emmet-vim',
-  },
-  {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    ft = { 'markdown' },
-    build = function()
-      vim.fn['mkdp#util#install']()
-    end,
-  },
-  {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
-  },
-  { 'nvim-treesitter/nvim-treesitter-context' },
-  {
-    'christoomey/vim-tmux-navigator',
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-    },
-    keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-    },
-  },
   {
     'nvim-tree/nvim-tree.lua',
     version = '*',
@@ -158,26 +60,6 @@ return {
           dotfiles = true,
         },
       }
-    end,
-  },
-  {
-    'lukas-reineke/headlines.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = true, -- or `opts = {}`
-  },
-  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-  },
-  {
-    'junegunn/goyo.vim',
-  },
-  {
-    'kylechui/nvim-surround',
-    config = function()
-      require('nvim-surround').setup {}
     end,
   },
 }
